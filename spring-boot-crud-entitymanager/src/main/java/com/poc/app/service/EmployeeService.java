@@ -1,6 +1,5 @@
 package com.poc.app.service;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,18 +7,20 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poc.app.entity.Employee;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
-	@Autowired
-	private EntityManager entityManager;
+	
+	private final EntityManager entityManager;
 
 	@Transactional
-	public int createEmployee(final Employee employee) {
+	public int createEmployee(Employee employee) {
 		System.out.println("inside Service class createEmployee() method");
 		Session session = entityManager.unwrap(Session.class);
 		int id = (int) session.save((Object) employee);
