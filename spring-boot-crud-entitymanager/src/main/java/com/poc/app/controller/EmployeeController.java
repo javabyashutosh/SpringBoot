@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poc.app.entity.Employee;
 import com.poc.app.service.EmployeeService;
 
-@RestController
-public class EmployeeController {
-	@Autowired
-	private EmployeeService employeeService;
+import lombok.RequiredArgsConstructor;
 
+@RestController
+@RequiredArgsConstructor
+public class EmployeeController {
+
+	private final EmployeeService employeeService;
+	
 	@PostMapping({ "/createEmp" })
 	public String createEmployee(@RequestBody Employee employee) {
 		System.out.println("Inside createEmployee() method");
